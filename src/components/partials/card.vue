@@ -47,7 +47,6 @@ export default {
   position: relative;
   color: white;
   height: 24vw;
-  object-fit: fill;
   display: flex;
   img{
     height: 100%;
@@ -58,7 +57,6 @@ export default {
     width: 100%;
     text-align: center;
     font-size:20px;
-    color:grey;
     position: absolute;
     top:50%;
     left: 50%;
@@ -69,17 +67,12 @@ export default {
   {
     opacity: .3;
   }
-  
   .info {
-    color: white;
     display: none;
     position: absolute;
     top: 0;
     height: 100%;
     overflow-Y: auto;
-    .overview {
-      height: 100%;
-    }
   }
   &:hover .info {
     display: block;
