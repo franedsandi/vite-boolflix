@@ -14,20 +14,25 @@ export default {
 
 <template>
   <div class="col-3">
-    <div class="custom-card mb-5">
-      <img :src="`https://image.tmdb.org/t/p/w342/${poster_path}`" :alt="title">
+    <div :class="['custom-card', {'no-poster': !poster_path}]">
+      <div v-if="poster_path" class="image">
+        <img :src="`https://image.tmdb.org/t/p/w342/${poster_path}`" :alt="title" class="card-image" />
+      </div>
+      <div v-else class="image">
+        <h3>{{ title }}</h3>
+      </div>
       <div class="info p-3">
         <div class="title mb-3">
-          Title: {{title}}
+          Title: {{ title }}
         </div>
         <div class="original_title mb-3">
-          Original Title: {{original_title}}
+          Original Title: {{ original_title }}
         </div>
         <div class="lenguaje mb-3">
-          Language: {{language}}
+          Language: {{ language }}
         </div>
         <div class="vote_average mb-3">
-          Vote: {{vote}}
+          Vote: {{ vote }}
         </div>
         <div class="overview">
           Overview: {{ overview }}
@@ -35,35 +40,51 @@ export default {
       </div>
     </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
-.custom-card{
+.custom-card {
   position: relative;
   color: white;
   min-height: 240px;
-  &:hover .info{
+  object-fit: fill;
+  &:hover img,
+  &:hover h3
+  {
+    opacity: .3;
+  }
+
+  .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  &:hover .info {
     display: block;
   }
-  &:hover img{
-    opacity: .3
-  }
-  .info{
+  .info {
     color: white;
     display: none;
     position: absolute;
-    top:0;
+    top: 0;
     height: 100%;
     overflow: auto;
-    .overview{
+    .overview {
       height: 100%;
     }
   }
-  img{
+  img, 
+  h3{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  h3{
+    color: black;
+  }
+  &.no-poster {
+    background-color: grey;
   }
 }
-
-
 </style>

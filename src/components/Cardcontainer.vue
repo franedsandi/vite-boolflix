@@ -1,11 +1,15 @@
 <script>
 import {store} from '../data/store'
 import card from './partials/card.vue'
+import resultsmovies from './partials/resultsmovies.vue'
+import resultstv from './partials/resultstv.vue'
 
 export default {
   name: 'CardContainer',
   components:{
     card,
+    resultsmovies,
+    resultstv
   
   },
   data(){
@@ -21,7 +25,7 @@ export default {
 
 <template>
   <div class="container film my-5">
-    <h1 class="mb-3">Movies ({{ store.filmlist.length }})</h1>
+    <resultsmovies/>
     <div class="row">
       <card 
       v-for="film in store.filmlist"
@@ -35,7 +39,7 @@ export default {
     </div>
   </div>
   <div class="container tv my-5">
-    <h1 class="mb-3">TV Series ({{ store.tvlist.length }})</h1>
+    <resultstv/>
     <div class="row">
       <card 
       v-for="series in store.tvlist"
