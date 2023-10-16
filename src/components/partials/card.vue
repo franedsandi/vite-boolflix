@@ -14,7 +14,7 @@ export default {
 
 <template>
   <div class="col-3">
-    <div :class="['custom-card', {'no-poster': !poster_path}]">
+    <div :class="['custom-card mb-4' , {'no-poster': !poster_path}]">
       <div v-if="poster_path" class="image">
         <img :src="`https://image.tmdb.org/t/p/w342/${poster_path}`" :alt="title" class="card-image" />
       </div>

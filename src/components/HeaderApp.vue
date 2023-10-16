@@ -1,16 +1,13 @@
 <script>
 import logo from './partials/logo.vue';
-import search from './partials/search.vue';
-import selecttype from './partials/selecttype.vue';
-import bottons from './partials/bottons.vue';
+import searchbar from './partials/searchbar.vue';
 
 export default {
   name: 'HeaderApp',
   components:{
     logo,
-    search,
-    selecttype,
-    bottons,
+    searchbar,
+
   },
   data(){
     return{
@@ -23,11 +20,7 @@ export default {
   <div class="headerapp">
     <div class="container d-flex justify-content-between">
       <logo />
-      <div class="searchzone d-flex gap-3">
-        <search />
-        <selecttype />
-        <bottons />
-      </div> 
+      <searchbar />
     </div>
   </div>
 </template>
