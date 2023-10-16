@@ -14,11 +14,11 @@ export default {
 
 <template>
   <div class="col-3">
-    <div :class="['custom-card mb-4' , {'no-poster': !poster_path}]">
-      <div v-if="poster_path" class="image">
+    <div class="custom-card mb-4">
+      <div v-if="poster_path">
         <img :src="`https://image.tmdb.org/t/p/w342/${poster_path}`" :alt="title" class="card-image" />
       </div>
-      <div v-else class="image">
+      <div v-else>
         <h3>{{ title }}</h3>
       </div>
       <div class="info p-3">
@@ -46,45 +46,44 @@ export default {
 .custom-card {
   position: relative;
   color: white;
-  min-height: 240px;
+  height: 24vw;
   object-fit: fill;
+  display: flex;
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  h3{
+    width: 100%;
+    text-align: center;
+    font-size:20px;
+    color:grey;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
   &:hover img,
   &:hover h3
   {
     opacity: .3;
   }
-
-  .image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  &:hover .info {
-    display: block;
-  }
+  
   .info {
     color: white;
     display: none;
     position: absolute;
     top: 0;
     height: 100%;
-    overflow: auto;
+    overflow-Y: auto;
     .overview {
       height: 100%;
     }
   }
-  img, 
-  h3{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  &:hover .info {
+    display: block;
   }
-  h3{
-    color: black;
-  }
-  &.no-poster {
-    background-color: grey;
-  }
+  
 }
 </style>
