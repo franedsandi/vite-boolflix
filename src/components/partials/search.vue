@@ -5,9 +5,15 @@ export default {
 </script>
 
 <template>
-<h1>search</h1>
+  <input 
+  class="form-control" 
+  type="search" 
+  placeholder="Search" 
+  aria-label="Search">
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+ input{
+  width: 20vw;
+ }
 </style>

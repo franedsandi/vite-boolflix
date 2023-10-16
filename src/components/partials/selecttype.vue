@@ -5,9 +5,17 @@ export default {
 </script>
 
 <template>
-<h1>selecttype</h1>
+<select 
+class="form-select" 
+aria-label="Default select example">
+  <option selected>All</option>
+  <option value="1">Movies</option>
+  <option value="2">Tv Series</option>
+</select>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+select{
+  font-size: 13px;
+}
 </style>

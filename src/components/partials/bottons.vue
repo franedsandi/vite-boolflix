@@ -5,9 +5,11 @@ export default {
 </script>
 
 <template>
-<h1>bottons</h1>
+<button type="button" class="btn btn-outline-secondary">Search</button>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+button{
+  font-size: 13px;
+}
 </style>

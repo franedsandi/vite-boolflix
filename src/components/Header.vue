@@ -21,14 +21,27 @@ export default {
 </script>
 
 <template>
-  <h1>HEADER</h1>
-  <logo />
-  <search />
-  <selecttype />
-  <bottons />
+  <div class="header">
+    <div class="container d-flex justify-content-between">
+      <logo />
+      <div class="searchzone d-flex gap-3">
+        <search />
+        <selecttype />
+        <bottons />
+      </div> 
+    </div>
+  </div>
 
 </template>
 
-<style>
+<style lang="scss" scoped>
+.header{  
+  color: white;
+  background-image: linear-gradient(grey, black);
+  .container{
+  height: 50px;
+  padding: 10px 0px;
+
+}}
 
 </style>

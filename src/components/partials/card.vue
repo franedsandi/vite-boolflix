@@ -8,6 +8,6 @@ export default {
 <h1>card</h1>
 </template>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

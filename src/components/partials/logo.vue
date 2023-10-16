@@ -5,9 +5,11 @@ export default {
 </script>
 
 <template>
-  <h1>logo</h1>
+  <img src="img/logo-boolflix.png" alt="logo-boolflix">
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+img{
+  height: 100%;
+}
 </style>
