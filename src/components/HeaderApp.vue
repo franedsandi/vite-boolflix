@@ -5,7 +5,7 @@ import selecttype from './partials/selecttype.vue';
 import bottons from './partials/bottons.vue';
 
 export default {
-  name: 'header',
+  name: 'HeaderApp',
   components:{
     logo,
     search,
@@ -16,12 +16,11 @@ export default {
     return{
     }
   }
-
 }
 </script>
 
 <template>
-  <div class="header">
+  <div class="headerapp">
     <div class="container d-flex justify-content-between">
       <logo />
       <div class="searchzone d-flex gap-3">
@@ -31,17 +30,15 @@ export default {
       </div> 
     </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
-.header{  
+.headerapp{  
   color: white;
-  background-image: linear-gradient(grey, black);
+  background-image: linear-gradient(rgb(90, 90, 90), black);
   .container{
-  height: 50px;
-  padding: 10px 0px;
-
-}}
-
+    height: 50px;
+    padding: 10px 0px;
+  }
+}
 </style>
