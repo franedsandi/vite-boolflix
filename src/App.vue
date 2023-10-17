@@ -14,7 +14,7 @@ export default {
     return {
       store,
       selectedType: 'All',
-      message: 'make a research',
+      message: 'Make a research',
     };
   },
   methods: {
@@ -27,7 +27,7 @@ export default {
           console.log('store.movie', store.movie); 
           console.log('store.tv', store.tv);
           if(store[type].length === 0){
-            this.message = 'not found';
+            this.message = `ERROR 404 there is no registered media with that name `;
           }
         })
         .catch(function (error) {
@@ -59,12 +59,17 @@ export default {
 <template>
   <div>
     <HeaderApp @startsearch="startsearches" @optionChange="optionChange"/>
-    <Cardcontainer v-if="store.movie.length > 0" title="Movies" type="movie" />
-    <h3 v-else> {{message}} </h3>
-    <Cardcontainer v-if="store.tv.length > 0" title="TV Series" type="tv"/>
+    <div v-if="store.movie.length > 0 || store.tv.length > 0">
+      <Cardcontainer v-if="store.movie.length > 0" title="Movies" type="movie" />
+      <Cardcontainer v-if="store.tv.length > 0" title="TV Series" type="tv"/>
+    </div>
+    <div v-else class="container text-center py-5">
+      <h3>{{ message }}</h3>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+
 @use './scss/main';
 </style>

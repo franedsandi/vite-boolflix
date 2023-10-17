@@ -6,8 +6,13 @@ export default {
   data() {
     return {
       store,
-      selectedType: 'all',
+      selectedType: 'All',
     };
+  },
+  methods: {
+    optionChange() {
+      this.$emit('optionChange', this.selectedType);
+    },
   },
 };
 </script>
@@ -35,7 +40,7 @@ export default {
             @change="optionChange">
             <option selected value="All">All</option>
             <option value="Movies">Movies</option>
-            <option value="Tv Series">Tv Series</option>
+            <option value="TV Series">TV Series</option>
           </select>
           <button 
             type="button" 
