@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'filmcard',
+  name: 'card',
   props:{
     title: String,
     original_title: String,

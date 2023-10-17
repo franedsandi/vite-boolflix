@@ -24,7 +24,8 @@ export default {
           type="search" 
           placeholder="Search" 
           aria-label="Search"
-          v-model.trim="store.apiParams.query">
+          v-model.trim="store.apiParams.query"
+          @keyup.enter="$emit('startsearch')">
           <select 
           class="form-select" 
           aria-label="Default select example">
