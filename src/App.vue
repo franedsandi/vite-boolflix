@@ -47,6 +47,7 @@ export default {
   <div>
     <HeaderApp @startsearch="startsearches"/>
     <Cardcontainer v-if="store.movie.length > 0" title="Movies" type="movie" />
+    <h3 v-else> {{message}} </h3>
     <Cardcontainer v-if="store.tv.length > 0" title="TV Series" type="tv"/>
   </div>
 </template>

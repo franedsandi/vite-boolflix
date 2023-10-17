@@ -1,22 +1,41 @@
 <script>
+import { store } from '../../data/store';
+
 export default {
   name: 'card',
-  props:{
+  props: {
     title: String,
     original_title: String,
     vote: String,
     overview: String,
     poster_path: String,
-    language: String
-  }
-}
+    language: String,
+  },
+  computed: {
+    fullImagePath() {
+      return `${store.imagelink}${this.poster_path}`;
+    },
+  },
+  methods: {
+    getFlag(language) {
+      
+      if (language === 'it') {
+        return 'img/it.png'; 
+      } else if (language === 'en') {
+        return 'img/en.png';
+      } else {
+        return ''; 
+      }
+    },
+  },
+};
 </script>
 
 <template>
   <div class="col-3">
     <div class="custom-card mb-4">
       <div v-if="poster_path">
-        <img :src="`https://image.tmdb.org/t/p/w342/${poster_path}`" :alt="title" class="card-image" />
+        <img :src="fullImagePath" :alt="title" class="card-image" />
       </div>
       <div v-else>
         <h3>{{ title }}</h3>
@@ -29,7 +48,12 @@ export default {
           Original Title: {{ original_title }}
         </div>
         <div class="lenguaje mb-3">
-          Language: {{ language }}
+          Language: 
+          <img 
+          :src="getFlag(language)" 
+          v-if="language === 'en' || language === 'it'"  
+          :alt="language" class="flag"/>
+          <span v-else class="text-uppercase">{{ language }}</span>
         </div>
         <div class="vote_average mb-3">
           Vote: {{ vote }}
@@ -73,6 +97,11 @@ export default {
     top: 0;
     height: 100%;
     overflow-Y: auto;
+    object-fit: cover;
+    img{
+      opacity: 1;
+      width: 30px;
+    }
   }
   &:hover .info {
     display: block;
