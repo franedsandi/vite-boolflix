@@ -3,47 +3,52 @@ import { store } from '../data/store';
 
 export default {
   name: 'HeaderApp',
-  data(){
-    return{
-      store
-    }
-  }
-}
+  data() {
+    return {
+      store,
+      selectedType: 'all',
+    };
+  },
+};
 </script>
+
 
 <template>
   <div class="headerapp">
     <div class="container d-flex justify-content-between">
       <div class="logo">
-          <img src="img/logo-boolflix.png" alt="logo-boolflix">
+        <img src="img/logo-boolflix.png" alt="logo-boolflix">
       </div>
       <div class="searchbar">
         <div class="custom-container d-flex gap-2">
           <input 
-          class="form-control" 
-          type="search" 
-          placeholder="Search" 
-          aria-label="Search"
-          v-model.trim="store.apiParams.query"
-          @keyup.enter="$emit('startsearch')">
-          <select 
-          class="form-select" 
-          aria-label="Default select example">
-            <option selected>All</option>
-            <option value="1">Movies</option>
-            <option value="2">Tv Series</option>
+            class="form-control" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            v-model.trim="store.apiParams.query"
+            @keyup.enter="$emit('startsearch')">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            v-model="selectedType"
+            @change="optionChange">
+            <option selected value="All">All</option>
+            <option value="Movies">Movies</option>
+            <option value="Tv Series">Tv Series</option>
           </select>
           <button 
-          type="button" 
-          class="btn btn-outline-secondary"
-          @click="$emit('startsearch')">
+            type="button" 
+            class="btn btn-outline-secondary"
+            @click="$emit('startsearch')">
             Search
-          </button> 
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <style lang="scss" scoped>
 .headerapp{  

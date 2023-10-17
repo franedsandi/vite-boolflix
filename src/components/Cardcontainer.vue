@@ -16,8 +16,6 @@ export default {
       store,
     }
   },
-  mounted(){
-  }
 }
 </script>
 
@@ -25,8 +23,7 @@ export default {
   <div class="container my-5">
     <h1 class="mb-4">{{title}} ( {{ store[type].length }} )</h1>
     <div 
-    class="row"
-    >
+    class="row">
       <card 
       v-for="item in  store[type]"
       :key="item.id"

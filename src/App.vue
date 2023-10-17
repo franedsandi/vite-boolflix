@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       store,
+      selectedType: 'All',
       message: 'make a research',
     };
   },
@@ -34,9 +35,21 @@ export default {
         });
     },
     startsearches() {
-      this.getApi('movie');
-      this.getApi('tv');
-    }
+      if (this.selectedType === 'All') {
+        this.getApi('movie');
+        this.getApi('tv');
+      } else if (this.selectedType === 'Movies') {
+        this.getApi('movie');
+        this.store.tv = [];
+      } else if (this.selectedType === 'TV Series') {
+        this.getApi('tv');
+        this.store.movie = [];
+      }
+    },
+    optionChange(option) {
+      this.selectedType = option;
+      this.startsearches(); 
+    },
   },
   mounted() {
   },
@@ -45,7 +58,7 @@ export default {
 
 <template>
   <div>
-    <HeaderApp @startsearch="startsearches"/>
+    <HeaderApp @startsearch="startsearches" @optionChange="optionChange"/>
     <Cardcontainer v-if="store.movie.length > 0" title="Movies" type="movie" />
     <h3 v-else> {{message}} </h3>
     <Cardcontainer v-if="store.tv.length > 0" title="TV Series" type="tv"/>

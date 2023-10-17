@@ -15,17 +15,34 @@ export default {
     fullImagePath() {
       return `${store.imagelink}${this.poster_path}`;
     },
+    roundedVote() {
+      const roundedValue = Math.ceil(parseFloat(this.vote) / 2) * 2;
+      return roundedValue > 10 ? 10 : roundedValue;
+    },
   },
   methods: {
     getFlag(language) {
-      
       if (language === 'it') {
-        return 'img/it.png'; 
+        return 'img/it.png';
       } else if (language === 'en') {
         return 'img/en.png';
       } else {
-        return ''; 
+        return '';
       }
+    },
+    getStars(vote) {
+      const roundedVote = Math.ceil(parseFloat(vote) / 2) * 2;
+      const fullStars = roundedVote / 2;
+      const fullStarsCount = Math.floor(fullStars);
+      const remainingStars = 5 - fullStarsCount;
+      let starsHTML = '';
+      for (let i = 0; i < fullStarsCount; i++) {
+        starsHTML += `<i class="fa-solid fa-star"></i>`;
+      }
+      for (let i = 0; i < remainingStars; i++) {
+        starsHTML += `<i class="fa-regular fa-star"></i>`;
+      }
+      return starsHTML;
     },
   },
 };
@@ -47,7 +64,7 @@ export default {
         <div class="original_title mb-3">
           Original Title: {{ original_title }}
         </div>
-        <div class="lenguaje mb-3">
+        <div class="language mb-3">
           Language: 
           <img 
           :src="getFlag(language)" 
@@ -56,7 +73,8 @@ export default {
           <span v-else class="text-uppercase">{{ language }}</span>
         </div>
         <div class="vote_average mb-3">
-          Vote: {{ vote }}
+          Vote:
+          <span v-html="getStars(roundedVote)"></span>
         </div>
         <div class="overview">
           Overview: {{ overview }}
