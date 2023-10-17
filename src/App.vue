@@ -1,53 +1,45 @@
 <script>
 import axios from 'axios';
-import { store } from './data/store'
-import HeaderApp from './components/HeaderApp.vue'
-import Cardcontainer from './components/Cardcontainer.vue'
+import { store } from './data/store';
+import HeaderApp from './components/HeaderApp.vue';
+import Cardcontainer from './components/Cardcontainer.vue';
 
 export default {
   name: 'App',
-  components:{
+  components: {
     HeaderApp,
-    Cardcontainer
+    Cardcontainer,
   },
-  data(){
-    return{
+  data() {
+    return {
       store,
-    }
+    };
   },
-  methods:{
-    getFilmApi(){
-      axios.get(store.filmApiUrl)
-      .then(res => {
-        store.filmlist = res.data.results
-        console.log(store.filmlist)/* can be deleted */
-      })
-      .catch(err => {
-        console.log (err)
-      });
+  methods: {
+    getApi() {
+      axios.get(store.apiUrl, {
+          params: store.apiParams,
+        })
+        .then(function (response) {
+          store.filmlist = response.data.results;
+          console.log(store.filmlist); /* Can be deleted */
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
-    getTvApi(){
-      axios.get(store.tvApiUrl)
-      .then(res => {
-        console.log(res.data.results)
-        store.tvlist = res.data.results
-        console.log(store.tvlist)/* can be deleted */
-      })
-      .catch(err => {
-        console.log (err)
-      });
-    }
   },
-  mounted(){
-    this.getFilmApi();
-    this.getTvApi();
-  }
-}
+  mounted() {
+/*     this.getApi(); */
+  },
+};
 </script>
 
 <template>
-  <HeaderApp />
-  <Cardcontainer />
+  <div>
+    <HeaderApp @startsearch="getApi"/>
+    <Cardcontainer />
+  </div>
 </template>
 
 <style lang="scss">
