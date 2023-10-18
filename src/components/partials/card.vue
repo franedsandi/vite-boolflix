@@ -3,6 +3,7 @@ import { store } from '../../data/store';
 
 export default {
   name: 'card',
+  flags: ['en' , 'it'],
   props: {
     title: String,
     original_title: String,
@@ -21,13 +22,11 @@ export default {
   },
   methods: {
     getFlag(language) {
-      if (language === 'it') {
-        return 'img/it.png';
-      } else if (language === 'en') {
-        return 'img/en.png';
-      } else {
-        return '';
-      }
+      const flags = {
+        it: 'img/it.png',
+        en: 'img/en.png'
+      };
+      return flags[language] || '';
     },
     roundAndGenerateStars(vote) {
     const roundedVote = Math.min(Math.ceil(parseFloat(vote) / 2) * 2, 10);
