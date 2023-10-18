@@ -16,9 +16,8 @@ export default {
       return `${store.imagelink}${this.poster_path}`;
     },
     roundedVote() {
-      const roundedValue = Math.ceil(parseFloat(this.vote) / 2) * 2;
-      return roundedValue > 10 ? 10 : roundedValue;
-    },
+    return this.roundAndGenerateStars(this.vote);
+  },
   },
   methods: {
     getFlag(language) {
@@ -30,20 +29,19 @@ export default {
         return '';
       }
     },
-    getStars(vote) {
-      const roundedVote = Math.ceil(parseFloat(vote) / 2) * 2;
-      const fullStars = roundedVote / 2;
-      const fullStarsCount = Math.floor(fullStars);
-      const remainingStars = 5 - fullStarsCount;
-      let starsHTML = '';
-      for (let i = 0; i < fullStarsCount; i++) {
-        starsHTML += `<i class="fa-solid fa-star"></i>`;
-      }
-      for (let i = 0; i < remainingStars; i++) {
-        starsHTML += `<i class="fa-regular fa-star"></i>`;
-      }
-      return starsHTML;
-    },
+    roundAndGenerateStars(vote) {
+    const roundedVote = Math.min(Math.ceil(parseFloat(vote) / 2) * 2, 10);
+    const fullStarsCount = Math.floor(roundedVote / 2);
+    const remainingStars = 5 - fullStarsCount;
+    let starsHTML = '';
+    for (let i = 0; i < fullStarsCount; i++) {
+      starsHTML += `<i class="fa-solid fa-star"></i>`;
+    }
+    for (let i = 0; i < remainingStars; i++) {
+      starsHTML += `<i class="fa-regular fa-star"></i>`;
+    }
+    return starsHTML;
+  },
   },
 };
 </script>
@@ -74,7 +72,7 @@ export default {
         </div>
         <div class="vote_average mb-3">
           Vote:
-          <span v-html="getStars(roundedVote)"></span>
+          <span v-html="roundAndGenerateStars(vote)"></span>
         </div>
         <div class="overview">
           Overview: {{ overview }}
